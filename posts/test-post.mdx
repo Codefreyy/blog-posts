@@ -1,0 +1,26 @@
+---
+title: "Light & Dark Mode in Next.js App Router + Tailwind with No Flicker"
+description: "You can toggle light and dark mode themes in Next.js + TailwindCSS while avoiding a page flicker."
+date: "2023-12-04"
+modified: "2023-12-15"
+tags: ["webdev", "react", "nextjs", "tailwindcss", "blog"]
+cover_image: true
+---
+
+## Why This Is Challenging
+
+When you want to allow a user to manually toggle the light-dark mode theme setting, you need to read the system preference first. If they do toggle the setting, you want to save the new setting in [`localStorage`](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage). However, `localStorage` is only available in the browser. Your server components won't be able to read this setting, and this situation can cause a theme _flash_ when your site loads due to an incorrect theme being applied for a split second.
+Here's how I applied `next-themes` with TailwindCSS to my blog:
+
+## 1. Edit your TailwindCSS config file
+
+You need to make one addition to your `tailwind.config.ts` file if you want to [toggle dark mode manually](https://tailwindcss.com/docs/dark-mode#toggling-dark-mode-manually). You must add a `darkMode` setting with a `class` value.
+
+```ts
+// tailwind.config.ts
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  darkMode: "class",
+  // ...
+}
+```
