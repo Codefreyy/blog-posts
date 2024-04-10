@@ -5,8 +5,27 @@ date: "2024-04-10"
 tags: ["TailwindCSS", "react", "dark mode"]
 cover_image: true
 ---
-
-
 import { Sandpack } from '@codesandbox/sandpack-react';
 
-<Sandpack template="react" />
+<Sandpack template="vanilla">
+```js src/index.js
+import "./styles.css";
+
+document.getElementById("app").innerHTML = `
+<h1>Hello Sandpack</h1>
+`;
+
+```
+
+// import code from file, path should relative to process.cwd().
+```css src/styles.css file=styles/globals.css
+// those code will be ignored
+h1{
+  background: red;
+}
+```
+
+```js readonly-file.js readOnly
+// I'm  readonly
+```
+</Sandpack>
